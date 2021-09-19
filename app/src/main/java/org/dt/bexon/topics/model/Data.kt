@@ -15,7 +15,7 @@ data class Data (
 	@SerializedName("icon_color")
 	val icon_color : String,
 	@SerializedName("data")
-	val data : List<Data>,
+	val data : List<TopicData>,
 	@SerializedName("create_time")
 	val create_time : String
 ): Serializable

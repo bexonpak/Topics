@@ -1,16 +1,9 @@
 package org.dt.bexon.topics.ui.main
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import org.dt.bexon.topics.R
 import org.dt.bexon.topics.model.Topics
-
-private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2
-)
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

@@ -1,18 +1,18 @@
 package org.dt.bexon.topics.ui.main
 
-import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import org.dt.bexon.topics.R
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import org.dt.bexon.topics.databinding.FragmentMainBinding
 import org.dt.bexon.topics.model.Data
-import org.dt.bexon.topics.model.Topics
+
 
 /**
  * A placeholder fragment containing a simple view.
@@ -39,20 +39,16 @@ class PlaceholderFragment : Fragment() {
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val root = binding.root
-        val textView: TextView = binding.sectionLabel
-        pageViewModel.topic.observe(viewLifecycleOwner, {
-            textView.text = it.name
-            try {
-                textView.setTextColor(Color.parseColor(it.icon_color))
-            } catch (e: Exception) {
-            }
-        })
+        val recyclerView: RecyclerView = binding.list
+        val dividerItemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        recyclerView.addItemDecoration(dividerItemDecoration)
+        pageViewModel.topic.observe(viewLifecycleOwner) {
+            Log.d("TAG", "onCreateView: ${it.id}")
+            val adapter = TopicAdapter(it.data)
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(context)
+        }
         return root
-    }
-
-    // TODO
-    fun setList() {
-
     }
 
     companion object {
