@@ -1,6 +1,7 @@
 package org.dt.bexon.topics.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class TopicData (
     @SerializedName("id")
@@ -11,4 +12,4 @@ data class TopicData (
     val extra: String,
     @SerializedName("link")
     val link: String
-)
+): Serializable

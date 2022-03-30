@@ -29,10 +29,12 @@ class TopicAdapter(arrayData: List<TopicData>) : RecyclerView.Adapter<RecyclerVi
             val builder: CustomTabsIntent.Builder = CustomTabsIntent.Builder()
             val customTabsIntent: CustomTabsIntent = builder.build()
             holder.itemView.setOnClickListener {
-                customTabsIntent.launchUrl(
-                    holder.itemView.context,
+                val uri = if (listData[position].link.startsWith("//")){
+                    Uri.parse("https:${listData[position].link}")
+                } else {
                     Uri.parse(listData[position].link)
-                )
+                }
+                customTabsIntent.launchUrl(holder.itemView.context, uri)
             }
         }
     }
